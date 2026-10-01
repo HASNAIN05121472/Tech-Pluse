@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechPulse | About - Our Mission & Team</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234F46E5'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+
+  <!-- Component 1: Navbar Header -->
+  <header class="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="../../index.html" class="flex items-center gap-2 text-xl font-bold text-indigo-600">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        <span>TechPulse</span>
+      </a>
+      
+      <!-- Desktop Navigation Links -->
+      <div class="hidden md:flex items-center space-x-6 text-sm font-semibold">
+        <a href="../../index.html" class="text-gray-600 hover:text-indigo-600 transition">Home</a>
+        <a href="about.html" class="text-indigo-600 border-b-2 border-indigo-600 pb-1">About</a>
+        <a href="contact.html" class="text-gray-600 hover:text-indigo-600 transition">Contact</a>
+      </div>
+
+      <!-- Desktop Auth CTAs -->
+      <div class="hidden md:flex items-center space-x-3">
+        <a href="signin.html" class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-indigo-600">Sign In</a>
+        <a href="signup.html" class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 shadow-md transition">Sign Up</a>
+      </div>
+
+      <!-- Mobile Menu Hamburger Button -->
+      <button id="mobile-menu-btn" aria-label="Toggle Navigation Menu" class="md:hidden p-2 rounded-lg text-gray-600 hover:text-indigo-600 hover:bg-gray-100 focus:outline-none">
+        <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </nav>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white px-4 pt-3 pb-5 space-y-3">
+      <a href="../../index.html" class="block font-medium text-gray-600 hover:text-indigo-600 py-1">Home</a>
+      <a href="about.html" class="block font-semibold text-indigo-600 py-1">About</a>
+      <a href="contact.html" class="block font-medium text-gray-600 hover:text-indigo-600 py-1">Contact</a>
+      <div class="pt-3 border-t border-gray-100 flex flex-col gap-2">
+        <a href="signin.html" class="w-full text-center py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-lg">Sign In</a>
+        <a href="signup.html" class="w-full text-center py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg">Sign Up</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Component 2: Breadcrumb Navigation -->
+  <div class="bg-gray-100 py-3 px-4 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto text-xs text-gray-500 flex items-center gap-2">
+      <a href="../../index.html" class="hover:underline hover:text-indigo-600">Home</a>
+      <span>/</span>
+      <span class="text-gray-800 font-semibold">About Us</span>
+    </div>
+  </div>
+
+  <!-- Component 3: Hero Header Banner -->
+  <section class="bg-indigo-900 text-white py-16 px-4 text-center">
+    <h1 class="text-3xl md:text-5xl font-extrabold mb-4">Empowering Web Innovation</h1>
+    <p class="text-indigo-200 max-w-2xl mx-auto text-sm md:text-base">We design scalable, modular UI platforms that streamline web engineering workflows.</p>
+  </section>
+
+  <!-- Component 4: Mission & Vision Cards -->
+  <section class="max-w-7xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-8">
+    <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
+      <div class="text-xs font-bold text-indigo-600 uppercase mb-2">Our Mission</div>
+      <h3 class="text-2xl font-bold mb-3">Accessible Web Standards</h3>
+      <p class="text-gray-600 leading-relaxed text-sm">Providing robust frontend components accessible for every developer level while maintaining clean HTML5 standards.</p>
+    </div>
+    <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
+      <div class="text-xs font-bold text-indigo-600 uppercase mb-2">Our Vision</div>
+      <h3 class="text-2xl font-bold mb-3">Modern CSS Efficiency</h3>
+      <p class="text-gray-600 leading-relaxed text-sm">Eliminating bloated stylesheets by leveraging utility-first framework paradigms and performant browser rendering.</p>
+    </div>
+  </section>
+
+  <!-- Component 5: Interactive Quote Component -->
+  <section class="bg-indigo-50 border-y border-indigo-100 py-10 px-4 text-center">
+    <blockquote class="max-w-3xl mx-auto italic text-indigo-900 font-medium text-lg">
+      "Simplicity is the key to scalable frontend architecture."
+    </blockquote>
+  </section>
+
+  <!-- Component 6: Milestone Timeline -->
+  <section class="max-w-4xl mx-auto px-4 py-16">
+    <h2 class="text-2xl font-bold text-center mb-10">Our Journey</h2>
+    <div class="space-y-6 border-l-2 border-indigo-600 pl-6">
+      <!-- Component 7: Timeline Entry Badge Item -->
+      <div>
+        <span class="text-xs font-bold bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded">2024</span>
+        <h4 class="font-bold text-lg mt-1">Project Inception</h4>
+        <p class="text-sm text-gray-600">Started as an open-source frontend library initiative.</p>
+      </div>
+      <div>
+        <span class="text-xs font-bold bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded">2026</span>
+        <h4 class="font-bold text-lg mt-1">Multi-Page UI Release</h4>
+        <p class="text-sm text-gray-600">Expanded into complete multi-page responsive ecosystem templates.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Component 8: Team Profile Cards Grid -->
+  <section class="bg-white py-16 border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-2xl font-bold text-center mb-12">Meet the Team</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Card 1 -->
+        <div class="text-center p-6 border rounded-xl hover:shadow-md transition">
+          <div class="w-20 h-20 bg-indigo-200 rounded-full mx-auto mb-4 flex items-center justify-center font-bold text-2xl text-indigo-700">MH</div>
+          <h3 class="font-bold text-gray-800">M Hasnain</h3>
+          <p class="text-xs text-indigo-600 mb-2">Lead Developer</p>
+          <p class="text-xs text-gray-500">Expert in Tailwind CSS and web architectures.</p>
+        </div>
+        <!-- Card 2 -->
+        <div class="text-center p-6 border rounded-xl hover:shadow-md transition">
+          <div class="w-20 h-20 bg-indigo-200 rounded-full mx-auto mb-4 flex items-center justify-center font-bold text-2xl text-indigo-700">UU</div>
+          <h3 class="font-bold text-gray-800">Ubaid-Ullah</h3>
+          <p class="text-xs text-indigo-600 mb-2">UI/UX Designer</p>
+          <p class="text-xs text-gray-500">Focuses on user-centric accessible web interfaces.</p>
+        </div>
+        <!-- Card 3 -->
+        <div class="text-center p-6 border rounded-xl hover:shadow-md transition">
+          <div class="w-20 h-20 bg-indigo-200 rounded-full mx-auto mb-4 flex items-center justify-center font-bold text-2xl text-indigo-700">IK</div>
+          <h3 class="font-bold text-gray-800">Imran Khan</h3>
+          <p class="text-xs text-indigo-600 mb-2">Frontend Engineer</p>
+          <p class="text-xs text-gray-500">Specializes in modern JavaScript and interactive state.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Component 9: Value Badges Banner -->
+  <section class="py-12 bg-gray-100 text-center">
+    <div class="max-w-4xl mx-auto px-4 flex flex-wrap justify-center gap-4">
+      <span class="px-4 py-2 bg-white rounded-full text-xs font-semibold shadow-sm text-gray-700">💡 Innovation First</span>
+      <span class="px-4 py-2 bg-white rounded-full text-xs font-semibold shadow-sm text-gray-700">⚡ Performance Driven</span>
+      <span class="px-4 py-2 bg-white rounded-full text-xs font-semibold shadow-sm text-gray-700">🎯 User Centered</span>
+    </div>
+  </section>
+
+  <!-- Component 10: Call to Action Box -->
+  <section class="py-12 bg-indigo-600 text-white text-center">
+    <h3 class="text-xl font-bold mb-3">Want to collaborate with us?</h3>
+    <a href="contact.html" class="inline-block px-6 py-2 bg-white text-indigo-600 font-semibold rounded-lg text-sm hover:bg-indigo-50 transition">Get in Touch</a>
+  </section>
+
+  <!-- Component 11: Consistent Footer -->
+  <footer class="bg-gray-900 text-gray-400 py-10 border-t border-gray-800 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
+      <div>
+        <h4 class="text-white font-bold text-lg mb-2">TechPulse</h4>
+        <p class="text-xs text-gray-400">Crafting robust UI components with HTML5 & Tailwind CSS.</p>
+      </div>
+      <div>
+        <h5 class="text-white font-semibold mb-2">Quick Links</h5>
+        <ul class="space-y-1">
+          <li><a href="../../index.html" class="hover:underline">Home</a></li>
+          <li><a href="about.html" class="hover:underline">About Us</a></li>
+          <li><a href="contact.html" class="hover:underline">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="text-white font-semibold mb-2">Account</h5>
+        <ul class="space-y-1">
+          <li><a href="signin.html" class="hover:underline">Sign In</a></li>
+          <li><a href="signup.html" class="hover:underline">Sign Up</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="text-center text-xs text-gray-500 mt-8 pt-4 border-t border-gray-800">
+      &copy; 2026 TechPulse Web Technologies Assignment. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Frontend Client-Side Interactivity Script -->
+  <script>
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const iconOpen = document.getElementById('menu-icon-open');
+    const iconClose = document.getElementById('menu-icon-close');
+
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        const isHidden = mobileMenu.classList.toggle('hidden');
+        iconOpen.classList.toggle('hidden', !isHidden);
+        iconClose.classList.toggle('hidden', isHidden);
+      });
+    }
+  </script>
+
+</body>
+</html>
