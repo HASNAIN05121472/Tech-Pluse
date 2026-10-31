@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Manage your saved resources and explore live sample posts from a public API.">
+  <title>TechPulse | Workspace - Resource Manager</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234F46E5'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.7.9/dist/axios.min.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+  <header class="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="../../index.html" class="flex items-center gap-2 text-xl font-bold text-indigo-600">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        <span>TechPulse</span>
+      </a>
+      <div class="hidden md:flex items-center space-x-6 text-sm font-semibold">
+        <a href="../../index.html" class="text-gray-600 hover:text-indigo-600 transition">Home</a>
+        <a href="workspace.html" class="text-indigo-600 border-b-2 border-indigo-600 pb-1">Workspace</a>
+        <a href="about.html" class="text-gray-600 hover:text-indigo-600 transition">About</a>
+        <a href="contact.html" class="text-gray-600 hover:text-indigo-600 transition">Contact</a>
+      </div>
+      <div class="hidden md:flex items-center space-x-3">
+        <a href="signin.html" class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-indigo-600">Sign In</a>
+        <a href="signup.html" class="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 shadow-md transition">Sign Up</a>
+      </div>
+      <button id="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden p-2 rounded-lg text-gray-600 hover:text-indigo-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </nav>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white px-4 pt-3 pb-5 space-y-3">
+      <a href="../../index.html" class="block font-medium text-gray-600 hover:text-indigo-600 py-1">Home</a>
+      <a href="workspace.html" class="block font-semibold text-indigo-600 py-1">Workspace</a>
+      <a href="about.html" class="block font-medium text-gray-600 hover:text-indigo-600 py-1">About</a>
+      <a href="contact.html" class="block font-medium text-gray-600 hover:text-indigo-600 py-1">Contact</a>
+      <div class="pt-3 border-t border-gray-100 flex flex-col gap-2">
+        <a href="signin.html" class="w-full text-center py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-lg">Sign In</a>
+        <a href="signup.html" class="w-full text-center py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg">Sign Up</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow">
+    <section class="bg-gradient-to-b from-indigo-50 to-white py-12 md:py-16 px-4 text-center" aria-labelledby="workspace-title">
+      <div class="max-w-3xl mx-auto">
+        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-indigo-100 text-indigo-700 mb-4">TechPulse Workspace</span>
+        <h1 id="workspace-title" class="text-3xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">Your Resource Library</h1>
+        <p class="text-gray-600 md:text-lg">Save and organize useful resources. Your records stay in this browser, and the sample feed below loads live from a public API.</p>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4 py-10 md:py-14" aria-labelledby="library-title">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
+        <div>
+          <h2 id="library-title" class="text-2xl font-bold text-gray-900">Saved resources</h2>
+          <p id="record-count" class="text-sm text-gray-500 mt-1">0 resources saved</p>
+        </div>
+        <p class="text-xs text-gray-500">Saved privately in this browser using Local Storage</p>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-6 items-start">
+        <form id="resource-form" class="lg:col-span-1 bg-white p-6 rounded-xl border border-gray-200 shadow-sm space-y-4" novalidate>
+          <div>
+            <h3 id="form-title" class="text-lg font-bold text-gray-900">Add a resource</h3>
+            <p class="text-xs text-gray-500 mt-1">All fields are required.</p>
+          </div>
+          <div>
+            <label for="resource-name" class="block text-sm font-medium text-gray-700 mb-1">Resource name</label>
+            <input id="resource-name" name="name" type="text" maxlength="100" required placeholder="e.g. Tailwind CSS documentation" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          </div>
+          <div>
+            <label for="resource-category" class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+            <select id="resource-category" name="category" required class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm bg-white focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+              <option value="">Choose a category</option>
+              <option value="Development">Development</option>
+              <option value="Design">Design</option>
+              <option value="Learning">Learning</option>
+              <option value="Productivity">Productivity</option>
+            </select>
+          </div>
+          <div>
+            <label for="resource-notes" class="block text-sm font-medium text-gray-700 mb-1">Notes</label>
+            <textarea id="resource-notes" name="notes" rows="3" maxlength="500" required placeholder="What makes this resource useful?" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"></textarea>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-2">
+            <button id="save-resource-btn" type="submit" class="flex-1 py-2.5 bg-indigo-600 text-white rounded-lg text-sm font-semibold hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Add resource</button>
+            <button id="cancel-edit-btn" type="button" class="hidden px-4 py-2.5 border border-gray-300 text-gray-700 rounded-lg text-sm font-semibold hover:bg-gray-50">Cancel</button>
+          </div>
+          <p id="form-status" role="status" aria-live="polite" class="text-sm hidden"></p>
+        </form>
+
+        <div class="lg:col-span-2">
+          <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm mb-4 grid sm:grid-cols-2 gap-3">
+            <div>
+              <label for="resource-search" class="block text-xs font-semibold text-gray-600 mb-1">Search resources</label>
+              <input id="resource-search" type="search" placeholder="Search name, category, or notes" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div>
+              <label for="category-filter" class="block text-xs font-semibold text-gray-600 mb-1">Filter by category</label>
+              <select id="category-filter" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm bg-white focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                <option value="">All categories</option>
+                <option value="Development">Development</option>
+                <option value="Design">Design</option>
+                <option value="Learning">Learning</option>
+                <option value="Productivity">Productivity</option>
+              </select>
+            </div>
+          </div>
+          <p id="storage-status" role="status" aria-live="polite" class="hidden mb-4 p-3 rounded-lg text-sm"></p>
+          <div id="resource-list" class="grid sm:grid-cols-2 gap-4" aria-live="polite"></div>
+          <p id="empty-state" class="hidden bg-white border border-dashed border-gray-300 rounded-xl p-8 text-center text-sm text-gray-500">No resources match your search. Add a resource or adjust your filters.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white border-y border-gray-200" aria-labelledby="api-heading">
+      <div class="max-w-7xl mx-auto px-4 py-10 md:py-14">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wider text-indigo-600 mb-2">Live API integration</p>
+            <h2 id="api-heading" class="text-2xl font-bold text-gray-900">Community sample posts</h2>
+            <p class="text-sm text-gray-600 mt-1">Loaded with an Axios GET request from DummyJSON. These are sample posts, not user-submitted resources.</p>
+          </div>
+          <button id="reload-posts-btn" type="button" class="self-start sm:self-auto px-4 py-2 border border-indigo-200 text-indigo-700 rounded-lg text-sm font-semibold hover:bg-indigo-50 focus:ring-2 focus:ring-indigo-500">Reload posts</button>
+        </div>
+        <p id="api-status" role="status" aria-live="polite" class="text-sm text-gray-600 mb-4">Loading sample posts…</p>
+        <div id="api-error" role="alert" class="hidden mb-4 p-4 rounded-lg border border-red-200 bg-red-50 text-sm text-red-800"></div>
+        <div id="api-posts" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+        <p class="mt-6 text-xs text-gray-500">Source: <a href="https://dummyjson.com/docs/posts" target="_blank" rel="noopener noreferrer" class="text-indigo-600 underline">DummyJSON Posts API documentation</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-gray-900 text-gray-400 py-8 border-t border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between gap-3 text-sm">
+      <p>© 2026 TechPulse Web Technologies Assignment.</p>
+      <div class="flex gap-4">
+        <a href="../../index.html" class="hover:text-white hover:underline">Home</a>
+        <a href="about.html" class="hover:text-white hover:underline">About</a>
+        <a href="contact.html" class="hover:text-white hover:underline">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../Scripts/workspace.js" defer></script>
+</body>
+</html>
